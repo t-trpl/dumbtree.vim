@@ -17,8 +17,7 @@ endfunction
 
 function StoreRecentBuffers()
     let cb = bufnr('%')
-    let ft = getbufvar(cb, '&filetype')
-    if ft != 'netrw' && ft != ''
+    if &filetype != 'netrw' 
         let idx = index(g:recent_buffers, cb)
         if idx != -1
             call remove(g:recent_buffers, idx)
@@ -46,4 +45,9 @@ endfunction
 nnoremap <F3> :call FastSwap()<CR>
 nnoremap <F2> :call ToggleExplore()<CR>
 
-autocmd BufEnter * call StoreRecentBuffers()
+" a hack job. i cannot figure out a way to ensure the buffer's filetype gets set
+" before i store the buffer. so what was happening is when it was called on
+" :Explore the file type would be set to '' but just for the first iteration.
+" i need to retain the order in which they were most recently accessed, so i
+" think this may be the only way...
+autocmd BufEnter * call timer_start(10, {-> StoreRecentBuffers()})
