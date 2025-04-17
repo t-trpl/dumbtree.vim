@@ -43,4 +43,7 @@ function FastSwap()
     endif
 endfunction
 
+nnoremap <F3> :call FastSwap()<CR>
+nnoremap <F2> :call ToggleExplore()<CR>
+
 autocmd BufEnter * call StoreRecentBuffers()
