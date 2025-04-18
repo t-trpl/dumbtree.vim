@@ -5,7 +5,7 @@ let g:dumbtreeBuffers = []
 
 function ToggleExplore()
     let currBufNum = (bufnr('%'))
-    if !buflisted(currBufNum)
+    if &ft ==# 'netrw' 
         let ind = len(g:dumbtreeBuffers) - 1
         if ind > -1
             execute 'buffer' g:dumbtreeBuffers[ind]
