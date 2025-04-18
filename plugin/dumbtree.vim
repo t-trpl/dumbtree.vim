@@ -3,17 +3,17 @@
 
 let g:dumbtreeBuffers = []
 
-function ToggleExplore()
-    let currBufNum = (bufnr('%'))
-    if &ft ==# 'netrw' 
+function! ToggleExplore()
+    let currBufNum = bufnr('%')
+    let ind = len(g:dumbtreeBuffers) - 1
+    if ind > -1 && !buflisted(g:dumbtreeBuffers[ind])
+        let g:dumbtreeBuffers = []
+        echo "removed invalid buffer"
+    endif
+    if &ft ==# 'netrw'
         let ind = len(g:dumbtreeBuffers) - 1
         if ind > -1
-            if buflisted(g:dumbtreeBuffers[ind])
-                execute 'buffer' g:dumbtreeBuffers[ind]
-            else
-                let g:dumbtreeBuffers = []
-                echo "removed invalid buffer"
-            endif
+            execute 'buffer' g:dumbtreeBuffers[ind]
         else
             echo "no buffer"
         endif
