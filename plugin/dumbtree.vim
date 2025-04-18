@@ -3,8 +3,7 @@
 
 let g:dumbtreeBuffers = []
 
-function! ToggleExplore()
-    let currBufNum = bufnr('%')
+function ToggleExplore()
     if &ft ==# 'netrw'
         let ind = len(g:dumbtreeBuffers) - 1
         if ind > -1
