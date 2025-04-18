@@ -19,7 +19,7 @@ endfunction
 
 function SaveTwoRecent()
     let currBufNum = bufnr('%')
-    if !buflisted(currBufNum)
+    if &ft ==# 'netrw' 
         return
     endif
     let isRecentInd = index(g:dumbtreeBuffers, currBufNum)
