@@ -9,9 +9,11 @@ function ToggleExplore()
         if ind > -1
             if !buflisted(g:dumbtreeBuffers[ind])
                 let g:dumbtreeBuffers = []
-                echo "removed invalid buffer"
+                echo "removed invalid buffers"
             else
-                execute 'buffer' g:dumbtreeBuffers[ind]
+                let buf = g:dumbtreeBuffers[ind]
+                execute 'buffer' buf
+                echo "buffer: " . buf
             endif
         else
             echo "no buffer"
