@@ -5,19 +5,24 @@ let g:dumbtreeBuffers = []
 
 function! ToggleExplore()
     let currBufNum = bufnr('%')
-    let ind = len(g:dumbtreeBuffers) - 1
-    if ind > -1 && !buflisted(g:dumbtreeBuffers[ind])
-        let g:dumbtreeBuffers = []
-        echo "removed invalid buffer"
-    endif
     if &ft ==# 'netrw'
         let ind = len(g:dumbtreeBuffers) - 1
         if ind > -1
-            execute 'buffer' g:dumbtreeBuffers[ind]
+            if !buflisted(g:dumbtreeBuffers[ind])
+                let g:dumbtreeBuffers = []
+                echo "removed invalid buffer"
+            else
+                execute 'buffer' g:dumbtreeBuffers[ind]
+            endif
         else
             echo "no buffer"
         endif
     else
+        let ind = len(g:dumbtreeBuffers) - 1
+        if ind > -1 && !buflisted(g:dumbtreeBuffers[ind])
+            let g:dumbtreeBuffers = []
+            echo "removed invalid buffer"
+        endif
         execute 'Explore'
     endif
 endfunction
