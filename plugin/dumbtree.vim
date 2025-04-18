@@ -11,7 +11,7 @@ function ToggleExplore()
             if buflisted(g:dumbtreeBuffers[ind])
                 execute 'buffer' g:dumbtreeBuffers[ind]
             else
-                call remove(g:dumbtreeBuffers, ind)
+                let g:dumbtreeBuffers = []
                 echo "removed invalid buffer"
             endif
         else
