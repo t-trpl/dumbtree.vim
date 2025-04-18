@@ -18,12 +18,12 @@ function! ToggleExplore()
             echo "no buffer"
         endif
     else
+        execute 'Explore'
         let ind = len(g:dumbtreeBuffers) - 1
         if ind > -1 && !buflisted(g:dumbtreeBuffers[ind])
             let g:dumbtreeBuffers = []
             echo "removed invalid buffer"
         endif
-        execute 'Explore'
     endif
 endfunction
 
