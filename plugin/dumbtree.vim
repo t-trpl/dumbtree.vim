@@ -7,9 +7,10 @@ function ToggleExplore()
     let currBufNum = (bufnr('%'))
     if &ft ==# 'netrw' 
         let ind = len(g:dumbtreeBuffers) - 1
-        if ind > -1
+        if ind > -1 && buflisted(g:dumbtreeBuffers[ind])
             execute 'buffer' g:dumbtreeBuffers[ind]
         else
+            let g:dumbtreeBuffers = []
             echo "no buffer"
         endif
     else
